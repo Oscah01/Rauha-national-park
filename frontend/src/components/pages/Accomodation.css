@@ -1,0 +1,184 @@
+/* Page Container */
+.accommodation-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Adjusted for better mobile view */
+  background: url("/about-1-4.jpg") no-repeat center center/cover;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay h1 {
+  font-size: 2.5rem;
+  padding: 0 20px; /* Added padding for better text alignment */
+  text-align: center;
+}
+
+/* Content Section */
+.content {
+  margin: 30px auto;
+  max-width: 800px;
+  padding: 0 20px; /* Added padding for better spacing on mobile */
+}
+
+.content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Accommodation Grid */
+.accommodation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center; /* Center each grid item horizontally */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.accommodation-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Image Container */
+.image-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+}
+
+.image-container img {
+  width: 30%; /* Adjusted for better spacing */
+  height: 200px; /* Adjusted height for better proportions */
+  object-fit: cover;
+  border-radius: 10px; /* Added for a polished look */
+}
+
+/* Amenities Section */
+.amenities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  text-align: left;
+}
+
+.amenities h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.amenities ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.amenities li {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+  margin: 10px 0;
+}
+
+.amenities li strong {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 50vh; /* Adjusted for smaller screens */
+  }
+
+  .hero-overlay h1 {
+    font-size: 2rem; /* Smaller font size for mobile */
+  }
+
+  .content h2 {
+    font-size: 1.8rem; /* Smaller heading size for mobile */
+  }
+
+  .content p {
+    font-size: 1rem; /* Smaller text size for mobile */
+  }
+
+  .image-container {
+    flex-direction: column; /* Stack images vertically on smaller screens */
+  }
+
+  .image-container img {
+    width: 100%; /* Full width for images on smaller screens */
+    height: 200px; /* Adjusted height for better proportions */
+    margin-bottom: 10px; /* Added space between stacked images */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 40vh; /* Further adjusted for very small screens */
+  }
+
+  .hero-overlay h1 {
+    font-size: 1.5rem; /* Even smaller font size for very small screens */
+  }
+
+  .content h2 {
+    font-size: 1.5rem; /* Smaller heading size for very small screens */
+  }
+
+  .content p {
+    font-size: 0.9rem; /* Smaller text size for very small screens */
+  }
+
+  .amenities h2 {
+    font-size: 1.8rem; /* Smaller heading size for very small screens */
+  }
+
+  .amenities li {
+    font-size: 1rem; /* Smaller text size for very small screens */
+  }
+}

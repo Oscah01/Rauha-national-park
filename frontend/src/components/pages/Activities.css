@@ -1,0 +1,160 @@
+/* Hero Section */
+.activities-hero-section {
+  background-image: url('/about-1-2.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative; /* Ensures the overlay works properly */
+}
+
+.activities-hero-overlay {
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay to make text readable */
+  height: 100%; /* Full height of the parent */
+  width: 100%; /* Full width of the parent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stacks text vertically */
+}
+
+.activities-hero-overlay h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0; /* Prevents extra margin from affecting centering */
+}
+
+.activities-hero-overlay p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  width: 50%;
+}
+
+/* Activities Section */
+.activities-list {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+  justify-content: space-between; /* Spread out the activities evenly */
+  padding: 40px 20px;
+  text-align: left; /* Align text to the left */
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 1200px; /* Make sure the container has a max width */
+}
+
+.activities-list .activity-item {
+  width: 30%; /* Each activity item takes up 30% of the container */
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 20px; /* Adds space between items when they wrap */
+}
+
+.activities-list h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.activities-list p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Pagination */
+.activities-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.activities-pagination button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.activities-pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.activities-pagination span {
+  font-size: 1.2rem;
+  margin: 0 10px;
+}
+
+.activity-item img {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .activities-hero-overlay h1 {
+      font-size: 2rem; /* Smaller font size for mobile */
+  }
+
+ .activities-hero-section{
+  height: 50vh;
+ }
+  .activities-hero-overlay p {
+      width: 80%; /* More width for text on smaller screens */
+      font-size: 1rem; /* Smaller font size for mobile */
+  }
+
+  .activities-list {
+      flex-direction: column; /* Stack items vertically on smaller screens */
+      padding: 20px 10px; /* Less padding on smaller screens */
+  }
+
+  .activities-list .activity-item {
+      width: 100%; /* Full width for each item on smaller screens */
+      margin-bottom: 20px; /* Adds space between stacked items */
+  }
+
+  .activity-item img {
+      height: 150px; /* Smaller image height for mobile */
+  }
+
+  .activities-list h2 {
+      font-size: 1.2rem; /* Smaller heading size for mobile */
+  }
+
+  .activities-list p {
+      font-size: 0.9rem; /* Smaller text size for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .activities-hero-overlay h1 {
+      font-size: 1.5rem; /* Even smaller font size for very small screens */
+  }
+
+  .activities-hero-overlay p {
+      width: 90%; /* More width for text on very small screens */
+      font-size: 0.9rem; /* Even smaller font size for very small screens */
+  }
+
+  .activity-item img {
+      height: 150px; /* Smaller image height for very small screens */
+  }
+
+  .activities-list h2 {
+      font-size: 1rem; /* Smaller heading size for very small screens */
+  }
+
+  .activities-list p {
+      font-size: 0.8rem; /* Smaller text size for very small screens */
+  }
+}

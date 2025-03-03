@@ -1,0 +1,124 @@
+/* General Page Styling */
+.location-container {
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  background: url("/visit-ruaha.jpg") no-repeat center center/cover;
+  height: 60vh; /* Adjusted for better mobile view */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 0 20px; /* Added padding for better text alignment */
+  text-align: center;
+}
+
+/* Content Section */
+.content {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px; /* Added padding for better spacing on mobile */
+  text-align: left;
+}
+
+.content h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* Image Container */
+.image-containers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Adds space between images */
+  margin-top: 20px;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.hero-image {
+  width: 45%; /* Set the width to 45% for larger screens */
+  height: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  border-radius: 10px; /* Added for a polished look */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 50vh !important;  /* Adjusted for smaller screens */
+  }
+
+  .hero-overlay h1 {
+    font-size: 1.5rem !important; 
+  }
+
+  .content h2 {
+    font-size: 1.3rem !important; /* Smaller heading size for mobile */
+  }
+
+  .content p {
+    font-size: 1rem; /* Smaller text size for mobile */
+  }
+
+  .hero-image {
+    width: 90%; /* Full width for images on smaller screens */
+    height: 200px; /* Adjusted height for better proportions */
+    margin-bottom: 10px; /* Added space between stacked images */
+  }
+
+  .image-containers {
+    flex-direction: column; /* Stack images vertically on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 40vh; /* Further adjusted for very small screens */
+  }
+
+  .hero-overlay h1 {
+    font-size: 1.5rem; /* Even smaller font size for very small screens */
+  }
+
+  .content h2 {
+    font-size: 1.5rem; /* Smaller heading size for very small screens */
+  }
+
+  .content p {
+    font-size: 0.9rem; /* Smaller text size for very small screens */
+  }
+
+  .hero-image {
+    height: 150px; /* Adjusted height for very small screens */
+  }
+}

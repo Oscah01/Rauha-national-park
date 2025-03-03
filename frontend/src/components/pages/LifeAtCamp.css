@@ -1,0 +1,128 @@
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  background-image: url('/about-1-4.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+}
+
+.hero-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Main Content Section */
+.main-content {
+  padding: 4rem 2rem;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.content-heading {
+  font-size: 2.5rem;
+  color: #2c6e49;
+  margin-bottom: 2rem;
+}
+
+.image-section {
+  margin-bottom: 2rem;
+}
+
+.camp-image {
+  width: 100%; /* Make image responsive */
+  max-width: 600px; /* Limit maximum width */
+  height: auto; /* Maintain aspect ratio */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.content-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.cta-btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  color: #0a381d;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 1px solid #0a381d;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #235d3b;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  /* Adjust hero section for smaller screens */
+  .hero-title {
+    font-size: 1.6rem !important; /* Smaller font size for mobile */
+  }
+
+  /* Adjust main content padding */
+  .main-content {
+    padding: 2rem 1rem;
+  }
+
+  /* Adjust heading font size */
+  .content-heading {
+    font-size: 1.2rem !important;
+  }
+
+  /* Adjust image size */
+  .camp-image {
+    width: 100%; /* Full width on smaller screens */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  /* Adjust text font size */
+  .content-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further adjustments for very small screens */
+  .hero-title {
+    font-size: 1.5rem; /* Even smaller font size */
+  }
+
+  .content-heading {
+    font-size: 1.75rem;
+  }
+
+  .content-text {
+    font-size: 0.9rem;
+  }
+
+  .cta-btn {
+    font-size: 1rem; /* Smaller button text */
+    padding: 0.75rem 1.5rem; /* Smaller button padding */
+  }
+}

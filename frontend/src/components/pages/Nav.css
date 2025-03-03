@@ -1,0 +1,12 @@
+.nav-top{
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    align-items: center;
+    margin-top: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: #0D4825;
+    font-size: 20px;
+    color: #c4b6b6;
+}

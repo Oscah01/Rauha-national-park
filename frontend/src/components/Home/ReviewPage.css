@@ -1,0 +1,210 @@
+/* Review Page Styles */
+.review-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  width: 100%;
+  padding: 20px; /* Add padding for better spacing on mobile */
+}
+
+.review-container h2 {
+  font-size: 28px; /* Default font size for heading */
+  margin-bottom: 20px;
+}
+
+.review-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px; /* Limit width for larger screens */
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding: 20px;
+  background-color: #f8f9fa; /* Add background color for better contrast */
+}
+
+.nav-button {
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  border: none;
+  padding: 10px;
+  opacity: 1; /* Always show buttons on mobile */
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.nav-button:first-of-type {
+  left: 10px;
+}
+
+.nav-button:last-of-type {
+  right: 10px;
+}
+
+.review-content {
+  width: 100%;
+  text-align: center;
+}
+
+.review-text {
+  font-size: 18px;
+  color: #444;
+  padding: 10px;
+  line-height: 1.6; /* Improve readability */
+}
+
+.review-author {
+  font-weight: bold;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.review-position {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Add review button */
+.add-review-btn {
+  color: #0D4825;
+  border: 1px solid #0D4825;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.add-review-btn:hover {
+  background: #0D4825;
+  color: white;
+}
+
+/* Review form */
+.review-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  max-width: 500px; /* Limit form width for larger screens */
+}
+
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.review-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+.review-form button {
+  padding: 8px 15px;
+  border: none;
+  color: #0D4825;
+  border: 1px solid #0D4825;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.review-form button:hover {
+  background: #0D4825;
+  color: white;
+}
+
+/* Cancel button */
+.cancel-btn {
+  border: 1px solid red !important;
+  color: red !important;
+  background: none;
+  transition: background 0.3s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background: red;
+  color: white !important;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .review-container h2 {
+    font-size: 24px; /* Smaller font size for mobile */
+  }
+
+  .review-card {
+    padding: 15px; /* Reduce padding for smaller screens */
+  }
+
+  .review-text {
+    font-size: 16px; /* Smaller font size for mobile */
+    padding: 5px; /* Reduce padding for smaller screens */
+  }
+
+  .review-author {
+    font-size: 16px; /* Smaller font size for mobile */
+  }
+
+  .review-position {
+    font-size: 12px; /* Smaller font size for mobile */
+  }
+
+  .nav-button {
+    font-size: 20px; /* Smaller button size for mobile */
+    padding: 5px; /* Reduce padding for smaller screens */
+  }
+
+  .add-review-btn {
+    font-size: 14px; /* Smaller button text for mobile */
+    padding: 8px 16px;
+  }
+
+  .review-form input,
+  .review-form textarea {
+    width: 90%; /* Adjust width for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .review-container h2 {
+    font-size: 20px; /* Even smaller font size for very small screens */
+  }
+
+  .review-text {
+    font-size: 14px; /* Even smaller font size for very small screens */
+  }
+
+  .review-author {
+    font-size: 14px; /* Even smaller font size for very small screens */
+  }
+
+  .review-position {
+    font-size: 10px; /* Even smaller font size for very small screens */
+  }
+
+  .nav-button {
+    font-size: 18px; /* Even smaller button size for very small screens */
+  }
+
+  .add-review-btn {
+    font-size: 12px; /* Even smaller button text for very small screens */
+    padding: 6px 12px;
+  }
+}

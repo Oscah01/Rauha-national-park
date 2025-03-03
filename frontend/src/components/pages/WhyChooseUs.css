@@ -1,0 +1,188 @@
+/* General Page Styles */
+.why-choose-us-container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Hero Section */
+  .why-choose-us-hero {
+    background-image: url('/about-1-1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 60vh; /* Adjusted for better mobile view */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  
+  .why-choose-us-overlay {
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack text vertically */
+    padding: 0 20px; /* Added padding for better text alignment */
+  }
+  
+  .why-choose-us-overlay h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .why-choose-us-overlay p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  /* Reasons Section */
+  .reasons-section {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .reasons-section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .reason-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+  }
+  
+  .reason-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Full width for smaller screens */
+    max-width: 300px; /* Limit width for larger screens */
+    text-align: center;
+    margin-bottom: 20px; /* Added space between cards */
+  }
+  
+  .reason-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .reason-card p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Call-to-Action Section */
+  .cta-section {
+    padding: 40px 20px;
+    background-color: #072413; /* Green background */
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-section h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .cta-section p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* Added space above the button */
+  }
+  
+  .cta-button:hover {
+    background-color: #113b13;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .why-choose-us-hero {
+      height: 50vh !important; /* Adjusted for smaller screens */
+    }
+  
+    .why-choose-us-overlay h1 {
+      font-size: 2rem; /* Smaller font size for mobile */
+    }
+  
+    .why-choose-us-overlay p {
+      font-size: 1rem; /* Smaller font size for mobile */
+    }
+  
+    .reasons-section h2 {
+      font-size: 1.8rem; /* Smaller heading size for mobile */
+    }
+  
+    .reason-card h3 {
+      font-size: 1.3rem; /* Smaller heading size for mobile */
+    }
+  
+    .reason-card p {
+      font-size: 1rem; /* Smaller text size for mobile */
+    }
+  
+    .cta-section h3 {
+      font-size: 1.5rem; /* Smaller heading size for mobile */
+    }
+  
+    .cta-section p {
+      font-size: 1rem; /* Smaller text size for mobile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .why-choose-us-hero {
+      height: 40vh; /* Further adjusted for very small screens */
+    }
+  
+    .why-choose-us-overlay h1 {
+      font-size: 1.5rem; /* Even smaller font size for very small screens */
+    }
+  
+    .why-choose-us-overlay p {
+      font-size: 0.9rem; /* Even smaller font size for very small screens */
+    }
+  
+    .reasons-section h2 {
+      font-size: 1.5rem; /* Smaller heading size for very small screens */
+    }
+  
+    .reason-card h3 {
+      font-size: 1.2rem; /* Smaller heading size for very small screens */
+    }
+  
+    .reason-card p {
+      font-size: 0.9rem; /* Smaller text size for very small screens */
+    }
+  
+    .cta-section h3 {
+      font-size: 1.2rem; /* Smaller heading size for very small screens */
+    }
+  
+    .cta-section p {
+      font-size: 0.9rem; /* Smaller text size for very small screens */
+    }
+  }

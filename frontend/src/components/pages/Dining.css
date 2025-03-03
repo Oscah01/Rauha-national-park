@@ -1,0 +1,126 @@
+/* Dining Page Styles */
+.dining-page {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background: url("/dining1.jpg") no-repeat center center/cover;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  /* Dining Content */
+  .dining-content {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .dining-content h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .dining-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: left;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .dining-images {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .dining-images img {
+    width: 220px;
+    height: 170px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.6s ease-in-out;
+    margin-bottom: 40px;
+  }
+  
+  .dining-images img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    position: relative;
+    width: 30vw;  /* Ensures modal takes almost full screen width */
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-content img {
+    width: 600px;  /* Ensure image fills the modal-content */
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  
+  .close-btn, .prev-btn, .next-btn {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+  }
+  
+  .close-btn {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .prev-btn {
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .next-btn {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .close-btn:hover, .prev-btn:hover, .next-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
