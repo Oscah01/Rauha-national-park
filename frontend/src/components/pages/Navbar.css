@@ -94,6 +94,22 @@ body {
   cursor: pointer;
 }
 
+.authorized{
+  display: flex;
+  gap: 10px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.login{
+  padding: 10px;
+}
+.signup{
+  display: none;
+}
+
+
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .navbar-links {

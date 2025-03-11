@@ -1,13 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./BookingPage.css";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase"; 
+import { db } from "../../../firebase"; 
+import { collection, addDoc } from "firebase/firestore";
 
 const BookingPage = () => {
   const navigate = useNavigate();
 
+  // State for date selection
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
   const [selectedMealOption, setSelectedMealOption] = useState(null);
   const [selectedBedOption, setSelectedBedOption] = useState(null);
   const [selectedAddOns, setSelectedAddOns] = useState([]);
+  const [email, setEmail] = useState(""); // State for email input
+
+  // Get the authenticated user's email on component mount
+  useEffect(() => {
+    const user = auth.currentUser; // Get the currently logged-in user
+    if (user && user.email) {
+      setEmail(user.email); // Set the email state to the logged-in user's email
+    }
+  }, []);
 
   const pricingOptions = [
     { id: 1, title: "Full Board", description: "Includes breakfast, lunch, and dinner.", price: 65, type: "meal" },
@@ -40,25 +57,105 @@ const BookingPage = () => {
 
   const totalAmount = selectedItems.reduce((sum, item) => sum + item.price, 0);
 
-  const handleCheckoutClick = () => {
-    const selectedOptions = [
-      selectedMealOption && pricingOptions.find((o) => o.id === selectedMealOption),
-      selectedBedOption && pricingOptions.find((o) => o.id === selectedBedOption),
-      ...selectedAddOns.map((id) => pricingOptions.find((o) => o.id === id)),
-    ].filter(Boolean);
 
-    console.log("Selected Options:", selectedOptions); // Debugging: Log selected options
-
-    navigate("/checkout", {
-      state: {
+  const handleCheckoutClick = async () => {
+    if (!checkInDate || !checkOutDate) {
+      alert("Please select check-in and check-out dates.");
+      return;
+    }
+  
+    if (!email) {
+      alert("Please enter your email.");
+      return;
+    }
+  
+    const selectedOptions = selectedItems;
+  
+    try {
+      // Save booking to Firestore
+      const bookingRef = await addDoc(collection(db, "bookings"), {
+        email,
+        checkInDate: checkInDate.toISOString().split("T")[0], // Format date as YYYY-MM-DD
+        checkOutDate: checkOutDate.toISOString().split("T")[0], // Format date as YYYY-MM-DD
+        selectedOptions,
         totalAmount,
-        selectedOptions, // Pass selected options to the checkout page
-      },
-    });
+        createdAt: new Date().toISOString(), // Add a timestamp
+      });
+  
+      alert("Booking created successfully!");
+  
+      // Optionally, send an email (if your backend supports it)
+      const response = await fetch("http://localhost:5000/api/email/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          checkInDate: checkInDate.toISOString().split("T")[0],
+          checkOutDate: checkOutDate.toISOString().split("T")[0],
+          selectedOptions,
+          totalAmount,
+        }),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        alert(result.message); // "Email sent successfully!"
+        navigate("/checkout", {
+          state: {
+            totalAmount,
+            selectedOptions,
+            checkInDate,
+            checkOutDate,
+          },
+        });
+      } else {
+        alert(result.error); // "Failed to send email."
+      }
+    } catch (error) {
+      console.error("Error creating booking:", error);
+      alert("Error creating booking.");
+    }
   };
-
+  
   return (
     <div className="booking-page">
+      <h2>Choose Your Booking Dates</h2>
+      <div className="date-selection">
+        <label>Check-in Date:</label>
+        <DatePicker
+          selected={checkInDate}
+          onChange={(date) => setCheckInDate(date)}
+          minDate={new Date()}
+          dateFormat="yyyy-MM-dd"
+          placeholderText="Select Check-in Date"
+        />
+
+        <label>Check-out Date:</label>
+        <DatePicker
+          selected={checkOutDate}
+          onChange={(date) => setCheckOutDate(date)}
+          minDate={checkInDate || new Date()}
+          dateFormat="yyyy-MM-dd"
+          placeholderText="Select Check-out Date"
+        />
+      </div>
+
+      {/* Email Input Field */}
+      <div className="email-input">
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+          required
+          disabled={!!auth.currentUser} // Disable the input if the user is logged in
+        />
+      </div>
+
       <h2>Choose Your Option</h2>
       <div className="pricing-options">
         {pricingOptions.map((option) => (
@@ -116,7 +213,7 @@ const BookingPage = () => {
               </tr>
             </tfoot>
           </table>
-          
+
           <div className="checkout-section">
             <button className="checkout-button" onClick={handleCheckoutClick}>
               Complete Booking

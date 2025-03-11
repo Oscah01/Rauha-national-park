@@ -1,10 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import "./CheckoutPage.css";
-import { FaCalendarDays } from "react-icons/fa6";
 
 // Import SVGs
 import VisaLogo from "/visa.svg";
@@ -23,8 +20,7 @@ const CheckoutPage = () => {
   const [discount, setDiscount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [checkInDate, setCheckInDate] = useState(null);
-  const [checkOutDate, setCheckOutDate] = useState(null);
+ 
 
   const applyPromoCode = () => {
     if (promoCode === "DISCOUNT10") {
@@ -133,42 +129,7 @@ const CheckoutPage = () => {
             />
           </div>
 
-          <div className="checkout-section date-picker-section">
-            <h3>Select Your Stay</h3>
-            <div className="date-picker-container">
-              <label>Check-in Date:</label>
-              <div className="date-input-wrapper">
-                <FaCalendarDays className="calendar-icon" />
-                <DatePicker
-                  selected={checkInDate}
-                  onChange={(date) => setCheckInDate(date)}
-                  selectsStart
-                  startDate={checkInDate}
-                  endDate={checkOutDate}
-                  minDate={new Date()}
-                  placeholderText="Select check-in date"
-                  className="checkout-input date-picker"
-                />
-              </div>
-            </div>
-
-            <div className="date-picker-container">
-              <label>Check-out Date:</label>
-              <div className="date-input-wrapper">
-                <FaCalendarDays className="calendar-icon" />
-                <DatePicker
-                  selected={checkOutDate}
-                  onChange={(date) => setCheckOutDate(date)}
-                  selectsEnd
-                  startDate={checkInDate}
-                  endDate={checkOutDate}
-                  minDate={checkInDate}
-                  placeholderText="Select check-out date"
-                  className="checkout-input date-picker"
-                />
-              </div>
-            </div>
-          </div>
+        
 
           <div className="pay">
             <h3>Payment Method</h3>

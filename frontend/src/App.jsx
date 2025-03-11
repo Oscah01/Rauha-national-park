@@ -1,3 +1,5 @@
+// src/App.jsx
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/pages/Navbar";
 import "./app.css";
@@ -18,25 +20,33 @@ import LifeAtCamp from "./components/pages/LifeAtCamp";
 import BookingPage from "./components/pages/booking/BookingPage";
 import CheckoutPage from "./components/pages/booking/CheckoutPage";
 import Availability from "./components/pages/Availability";
-import Layout from "./components/Home/Layout"; // Import the Layout component
+import Layout from "./components/Home/Layout";
+import ProtectedRoute from "./components/pages/booking/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
+import { AdminProvider } from "./admin/AdminContext"; // Import AdminProvider
+import AdminPage from "./admin/adminPage"; // Import AdminPage
 
 function App() {
   return (
     <Router>
-      <AppContent />
+      <AuthProvider>
+        <AdminProvider> {/* Wrap AdminProvider inside Router */}
+          <AppContent />
+        </AdminProvider>
+      </AuthProvider>
     </Router>
   );
 }
 
 function AppContent() {
   const location = useLocation();
-  const hideFooterPages = ["/checkout"]; // Add any other pages where you want to hide the footer
+  const hideFooterPages = ["/checkout"];
 
   return (
     <>
       <Nav />
       <Navbar />
-      <Layout> {/* Wrap Routes with Layout */}
+      <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about-us" element={<AboutUs />} />
@@ -50,7 +60,23 @@ function AppContent() {
           <Route path="/why-choose-us" element={<WhyChooseUs />} />
           <Route path="/dining" element={<Dining />} />
           <Route path="/life-in-camp" element={<LifeAtCamp />} />
-          <Route path="/booking" element={<BookingPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/booking"
+            element={
+              <ProtectedRoute>
+                <BookingPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/availability" element={<Availability />} />
         </Routes>

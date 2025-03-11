@@ -162,7 +162,10 @@
   padding: 20px;
   margin-top: 20px;
 }
-
+.admin-login{
+  color: #AFADAA ;
+  background-color: transparent;
+}
 .copyright,
 .admin-login {
   margin: 10px 0;

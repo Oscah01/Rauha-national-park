@@ -3,11 +3,19 @@ import "./Footer.css"; // Import CSS file
 import { FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6"; // Social media icons
 import { FaTripadvisor } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
-
+import { useNavigate } from "react-router-dom";
 import { MdOutlineMail } from "react-icons/md";
+
+ 
 
 
 const Footer = () => {
+
+  const navigate = useNavigate();
+
+  const handleAdminLogin = () => {
+    navigate("/admin"); // Navigate to the AdminPage
+  };
   return (
     <footer className="footer-container">
       {/* Footer Top - Subscription Form */}
@@ -86,7 +94,9 @@ const Footer = () => {
       </div>
       <div className="footer-copyright">
       <p className="copyright">&copy; 2025 Tungamalenga Lodge & Camp. All Rights Reserved. <span> Privacy Policy.</span></p>
-       <p className="admin-login">Owner Login</p>
+      <button className="admin-login" onClick={handleAdminLogin}>
+        Owner Login
+      </button>
       </div>
     </footer>
   );

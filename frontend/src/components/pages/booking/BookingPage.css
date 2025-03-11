@@ -8,7 +8,8 @@
   
   .booking-page h2 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     font-size: 28px;
     color: #2c3e50;
     font-weight: 600;
@@ -207,6 +208,134 @@
   .selected-options .checkout-button:hover {
     background-color: #45a049;
   }
+
+  /* Styling for the overall booking page */
+.booking-page {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Styling for the date selection section */
+.date-selection {
+  display: flex;
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center;     /* Centers the content vertically */
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+  height: 100%;            /* Ensures the section takes the full height */
+}
+
+/* Label styling for date pickers */
+.date-selection label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 16px;
+  text-align: center;      /* Centers the label text */
+}
+
+/* Styling for the date picker input fields */
+.date-selection .react-datepicker-wrapper {
+  display: inline-block;
+  width: 100%;
+  text-align: center;      /* Centers the input field */
+}
+
+.date-selection .react-datepicker__input-container input {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 50%;              /* Makes the input field 50% of the container width */
+  box-sizing: border-box;
+  margin: 0 auto;          /* Ensures the input field is centered */
+}
+
+
+/* Styling for the DatePicker popup */
+.react-datepicker__triangle {
+  display: none;
+}
+
+.react-datepicker__header {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px 5px 0 0;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.react-datepicker__day-names {
+  font-weight: bold;
+}
+
+.react-datepicker__day {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 50%;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.react-datepicker__day:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.react-datepicker__day--selected {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.react-datepicker__day--today {
+  font-weight: bold;
+  border: 2px solid #4CAF50;
+}
+
+/* Placeholder text styling */
+.react-datepicker__input-container input::placeholder {
+  color: #888;
+}
+
+/* Additional styling to ensure proper spacing between date inputs */
+.date-selection .react-datepicker-wrapper {
+  margin-bottom: 10px;
+}
+ 
+.email-input {
+  margin: 15px auto; /* Centering horizontally */
+  display: flex;
+  flex-direction: column; /* Stack label and input vertically */
+  width: 50%;
+  align-items: center; /* Center items horizontally */
+  text-align: center; /* Ensure text inside is centered */
+}
+
+.email-input label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.email-input input {
+  width: 100%; /* Ensure input takes the full width of the container */
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center; /* Center text inside input */
+}
+
+
+.email-input input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
   @media (max-width: 768px) {
     .selected-options table, .pricing-options {
       font-size: 14px;
