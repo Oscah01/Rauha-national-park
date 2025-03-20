@@ -1,4 +1,3 @@
-// src/admin/useAdminLogic.jsx
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
@@ -10,26 +9,26 @@ import {
   updateReview,
   checkAdminStatus,
   onAuthChange,
-  makeUserAdmin, // Ensure this is imported
+  makeUserAdmin,
 } from "./firebaseService";
 import { useAdmin } from "./AdminContext";
 
 export const useAdminLogic = () => {
-  const { isAdmin, setIsAdmin } = useAdmin();
+  const { isAdmin, setIsAdmin, loading } = useAdmin(); // Destructure setIsAdmin from useAdmin
   const [bookings, setBookings] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   // Function to force token refresh
   const refreshToken = async () => {
-    await auth.currentUser.getIdToken(true); // Force token refresh
+    await auth.currentUser?.getIdToken(true); // Force token refresh
   };
 
   // Check admin status on mount
   useEffect(() => {
     console.log("Checking admin status...");
+
     const unsubscribe = onAuthChange(async (user) => {
       if (user) {
         console.log("User logged in:", user.email);
@@ -38,23 +37,24 @@ export const useAdminLogic = () => {
         await refreshToken();
 
         try {
-          const isAdminUser = await checkAdminStatus(user);
+          const isAdminUser = await checkAdminStatus(user); // Check if the user is an admin
           console.log("User is admin?", isAdminUser);
-          setIsAdmin(isAdminUser); // Set admin status
+          setIsAdmin(isAdminUser); // Update isAdmin state in AdminContext
+
           if (!isAdminUser) {
-            navigate("/"); // Redirect if not admin
+            navigate("/"); // Redirect to home if the user is not an admin
           }
         } catch (error) {
           console.error("Error checking admin status:", error);
-          navigate("/home");
+          navigate("/"); // Redirect to home on error
         }
       } else {
-        navigate("/home");
+        setIsAdmin(false); // Set isAdmin to false if no user is logged in
+        navigate("/"); // Redirect to home if no user is logged in
       }
-      setLoading(false);
     });
 
-    return () => unsubscribe();
+    return () => unsubscribe(); // Cleanup the auth listener on unmount
   }, [navigate, setIsAdmin]);
 
   // Fetch bookings and reviews when isAdmin changes

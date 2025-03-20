@@ -47,7 +47,6 @@ const saveUser = async (req, res) => {
   }
 };
 
-// Email Sign-Up function
 const signUpWithEmail = async (req, res) => {
   try {
     const { email, password } = req.body;

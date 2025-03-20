@@ -89,11 +89,12 @@ export const checkAdminStatus = async (user) => {
   if (!user) return false;
 
   try {
+    const idToken = await user.getIdToken();
     const response = await fetch('http://localhost:5000/api/check-admin', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${await user.getIdToken()}`,
+        Authorization: `Bearer ${idToken}`,
       },
     });
 
@@ -101,9 +102,8 @@ export const checkAdminStatus = async (user) => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const isAdmin = await response.json(); // Directly get the boolean value
-    console.log('Admin status:', isAdmin); // Log the admin status
-    return isAdmin;
+    const { isAdmin } = await response.json(); // Destructure isAdmin from the response
+    return isAdmin; // Return the boolean value
   } catch (error) {
     console.error('Error checking admin status:', error);
     return false;

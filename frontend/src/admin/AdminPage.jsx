@@ -1,6 +1,4 @@
-// src/admin/AdminPage.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAdminLogic } from "./useAdminLogic";
 import { logout } from "./firebaseService";
 import BookingsTable from "./BookingsTable";
@@ -27,7 +25,6 @@ const AdminPage = () => {
     position: "",
     testimonial: "",
   });
-  const navigate = useNavigate();
 
   // Handling logout
   const handleLogout = async () => {
@@ -66,8 +63,7 @@ const AdminPage = () => {
   }
 
   if (!isAdmin) {
-    navigate("/"); // Redirect if not admin
-    return null; // Prevent rendering the rest of the component
+    return <p>You are not authorized to access this page.</p>; // Show unauthorized message
   }
 
   return (
