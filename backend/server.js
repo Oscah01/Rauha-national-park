@@ -4,32 +4,27 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs"); // You might need bcrypt for password hashing
+const bcrypt = require("bcryptjs"); // For password hashing
 const paymentRoutes = require("./routes/paymentRoutes");
 const emailRoutes = require("./routes/emailRoutes");
-const userRoutes = require("./routes/userRoutes"); // Import userRoutes
-const { verifyToken } = require("./middleware/auth"); // Import the verifyToken middleware
-const User = require("./models/User"); // Import the User model
+const userRoutes = require("./routes/userRoutes");
+const { verifyToken } = require("./middleware/auth");
+const User = require("./models/User");
 
 const app = express();
-// ✅ CORS Configuration (Allow Frontend URL)
+
+// ✅ CORS Configuration
 const corsOptions = {
-  origin: "http://localhost:5173", // Change this to your frontend URL in production
-  credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: "https://www.ruahatungacamp.com", // Allow only your frontend domain
+  credentials: true, // Allow cookies and credentials
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
 };
 app.use(cors(corsOptions));
-app.use(express.static('build'));
-
-// ✅ Fix Cross-Origin-Opener-Policy (COOP) Blocking `window.close()`
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-  next();
-});
+app.options("*", cors(corsOptions)); // Handle preflight requests for all routes
 
 // ✅ Middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // Parse JSON request bodies
+app.use(express.static("build")); // Serve static files (if applicable)
 
 // ✅ MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI; // Get MongoDB connection string from .env
@@ -40,40 +35,52 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // ✅ Routes
-app.use("/api/payment", paymentRoutes);
-app.use("/api/email", emailRoutes);
-app.use("/api", userRoutes); // Use userRoutes
+app.use("/api/payment", paymentRoutes); // Payment-related routes
+app.use("/api/email", emailRoutes); // Email-related routes
+app.use("/api", userRoutes); // User-related routes
 
 // ✅ Protected Route Example
 app.get("/api/protected", verifyToken, (req, res) => {
-  res.status(200).json({ message: 'You have access to this protected route!' });
+  res.status(200).json({ message: "You have access to this protected route!" });
 });
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the homepage!');
-});
-
-// ✅ Route to Generate JWT for User after Login
+// ✅ Login Route
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
-  // Here you would find the user from the database
-  const user = await User.findOne({ email });
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
-  }
+  try {
+    // Find the user in the database
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-  // Validate password with bcrypt (assuming passwords are hashed in DB)
-  const isPasswordValid = await bcrypt.compare(password, user.password);
-  if (!isPasswordValid) {
-    return res.status(401).json({ message: "Invalid credentials" });
-  }
+    // Validate the password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
 
-  // Generate JWT Token
-  const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
-  
-  // Send token in response
-  res.status(200).json({ message: "Login successful", token });
+    // Generate a JWT token
+    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+    // Send the token in the response
+    res.status(200).json({ message: "Login successful", token });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Something went wrong during login" });
+  }
+});
+
+// ✅ Home Route
+app.get("/", (req, res) => {
+  res.send("Welcome to the homepage!");
+});
+
+// ✅ Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Something went wrong!" });
 });
 
 // ✅ Start Server
