@@ -1,4 +1,3 @@
-// src/admin/firebaseService.jsx
 import { db, auth } from "../firebase"; // Import Firestore and auth instances
 import { collection, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -64,48 +63,53 @@ export const updateReview = async (id, updatedData) => {
 };
 
 // Promote a user to admin
+// Client-side function to promote a user to admin
 export const makeUserAdmin = async (uid) => {
   try {
-    const idToken = await auth.currentUser.getIdToken(); // Get the current user's ID token
+    // Get the current user's token, and force refresh to get the updated claims
+    const idToken = await auth.currentUser.getIdToken(true);
+
+    // Send the API request to promote the user to admin
     const response = await fetch("http://localhost:5000/api/make-admin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${idToken}`, // Send the ID token for verification
+        Authorization: `Bearer ${idToken}`,
       },
-      body: JSON.stringify({ uid }), // Send the UID of the user to promote
+      body: JSON.stringify({ uid }),
     });
 
     const result = await response.json();
-    return result; // Return the result (success or error message)
+    return result; // Handle the result on success or failure
   } catch (error) {
     console.error("Error making user admin:", error);
     return { success: false, message: "Failed to make user admin." };
   }
 };
 
-// Check if the user is an admin
-export const checkAdminStatus = async (user) => {
-  if (!user) return false;
-
+// Client-side function to check if the user is an admin
+export const checkAdminStatus = async () => {
   try {
+    const user = auth.currentUser;
+    if (!user) {
+      console.error("No user is currently logged in.");
+      return false;
+    }
+
     const idToken = await user.getIdToken();
-    const response = await fetch('http://localhost:5000/api/check-admin', {
-      method: 'GET',
+
+    const response = await fetch("http://localhost:5000/api/check-admin", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${idToken}`,
       },
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const { isAdmin } = await response.json(); // Destructure isAdmin from the response
-    return isAdmin; // Return the boolean value
+    const result = await response.json();
+    return result.isAdmin; // true or false
   } catch (error) {
-    console.error('Error checking admin status:', error);
+    console.error("Error checking admin status:", error);
     return false;
   }
 };
