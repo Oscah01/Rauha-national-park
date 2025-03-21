@@ -2,6 +2,7 @@
 .checkout-container {
   max-width: 1200px;
   margin: 20px auto;
+  padding: 10px;
   border-top: 1px solid #ddd;
   border-radius: 8px;
   background-color: #fff;
@@ -11,13 +12,12 @@
   display: flex;
   flex-direction: column; /* Stack columns vertically on mobile */
   gap: 20px;
-  padding: 10px;
 }
 
 /* Left Column - Checkout Process */
 .checkout-left {
   padding: 10px;
-  max-width: 50%;
+  width: 100%; /* Full width on mobile */
   background-color: #fff;
 }
 
@@ -25,8 +25,7 @@
 .checkout-right {
   background-color: #f9f9f9;
   padding: 10px;
-  max-width: 40%;
-
+  width: 100%; /* Full width on mobile */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -107,7 +106,7 @@
 /* Discount apply button */
 .apply-discount-button {
   width: 100%; /* Full width on mobile */
-  height: 30px;
+  height: 40px; /* Slightly larger for better touch targets */
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -265,7 +264,7 @@ label {
 
 .checkout-footer {
   display: flex;
-  /* flex-direction: column; Stack footer links vertically */
+  flex-direction: column; /* Stack footer links vertically */
   gap: 10px;
   padding: 16px;
   background-color: #f8f8f8;
@@ -292,10 +291,12 @@ label {
 
   .checkout-left {
     flex: 2; /* Left column takes more space */
+    max-width: 60%; /* Adjust as needed */
   }
 
   .checkout-right {
     flex: 1; /* Right column takes less space */
+    max-width: 35%; /* Adjust as needed */
     position: sticky;
     top: 20px;
     height: fit-content;
@@ -320,5 +321,41 @@ label {
   .payment-svg {
     width: 124px; /* Larger SVG size for larger screens */
     height: 124px;
+  }
+}
+
+/* Media Queries for Mobile Screens */
+@media (max-width: 480px) {
+  .checkout-container {
+    margin: 10px auto;
+    padding: 5px;
+  }
+
+  .checkout-layout {
+    gap: 10px;
+  }
+
+  .checkout-section h3,
+  .pay h3 {
+    font-size: 16px; /* Smaller font size for mobile */
+  }
+
+  .booking-summary h3 {
+    font-size: 16px; /* Smaller font size for mobile */
+  }
+
+  .payment-svg {
+    width: 60px; /* Smaller SVG size for mobile */
+    height: 60px;
+  }
+
+  .checkout-footer {
+    flex-direction: column; /* Stack footer links vertically */
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .checkout-footer a {
+    font-size: 12px; /* Smaller font size for mobile */
   }
 }

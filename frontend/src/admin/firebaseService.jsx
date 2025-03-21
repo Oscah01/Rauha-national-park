@@ -70,7 +70,7 @@ export const makeUserAdmin = async (uid) => {
     const idToken = await auth.currentUser.getIdToken(true);
 
     // Send the API request to promote the user to admin
-    const response = await fetch("http://localhost:5000/api/make-admin", {
+    const response = await fetch("https://tungacamp-national-park.onrender.com/api/make-admin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export const checkAdminStatus = async () => {
 
     const idToken = await user.getIdToken();
 
-    const response = await fetch("http://localhost:5000/api/check-admin", {
+    const response = await fetch("https://tungacamp-national-park.onrender.com/api/check-admin", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

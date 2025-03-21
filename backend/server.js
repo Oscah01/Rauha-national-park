@@ -19,6 +19,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 app.use(cors(corsOptions));
+app.use(express.static('build'));
 
 // ✅ Fix Cross-Origin-Opener-Policy (COOP) Blocking `window.close()`
 app.use((req, res, next) => {
