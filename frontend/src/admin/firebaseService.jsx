@@ -67,7 +67,7 @@ export const updateReview = async (id, updatedData) => {
 export const makeUserAdmin = async (uid) => {
   try {
     const idToken = await auth.currentUser.getIdToken(); // Get the current user's ID token
-    const response = await fetch("https://tungacamp-national-park.onrender.com/api/make-admin", {
+    const response = await fetch("http://localhost:5000/api/make-admin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +90,7 @@ export const checkAdminStatus = async (user) => {
 
   try {
     const idToken = await user.getIdToken();
-    const response = await fetch('https://tungacamp-national-park.onrender.com/api/check-admin', {
+    const response = await fetch('http://localhost:5000/api/check-admin', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
