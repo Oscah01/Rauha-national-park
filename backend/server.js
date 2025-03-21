@@ -43,9 +43,14 @@ app.use("/api/payment", paymentRoutes);
 app.use("/api/email", emailRoutes);
 app.use("/api", userRoutes); // Use userRoutes
 
+
 // ✅ Protected Route Example
 app.get("/api/protected", verifyToken, (req, res) => {
   res.status(200).json({ message: 'You have access to this protected route!' });
+});
+
+app.get("/test", (req, res) => {
+  res.status(200).json({ message: "Server is working!" });
 });
 
 // ✅ Route to Generate JWT for User after Login

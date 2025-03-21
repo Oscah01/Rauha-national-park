@@ -44,7 +44,7 @@ const CheckoutPage = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/payment/create-transaction",
+        "https://tungacamp-national-park.onrender.com/api/payment/create-transaction",
         { amount: totalAmount - discount, currency: "USD" }
       );
   
