@@ -12,7 +12,6 @@ const { verifyToken } = require("./middleware/auth"); // Import the verifyToken 
 const User = require("./models/User"); // Import the User model
 
 const app = express();
-
 // ✅ CORS Configuration (Allow Frontend URL)
 const corsOptions = {
   origin: "http://localhost:5173", // Change this to your frontend URL in production
