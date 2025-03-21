@@ -143,7 +143,7 @@ const AboutUs = () => {
 
           {/* Card 4 */}
           <div className="card">
-            <img src="/activity1-1.jpg" alt="Card 4" loading="lazy" />
+            <img src="/latest.jpeg" alt="Card 4" loading="lazy" />
             <div className="card-text">
               <h3>Activities & Experiences</h3>
               <p>

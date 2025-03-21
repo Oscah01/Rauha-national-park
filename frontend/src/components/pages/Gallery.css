@@ -77,14 +77,14 @@ img {
 }
 
 .modal img{
-    width: 500px;
-    height: 600px;
+    width: 800px;
+    height: 700px;
 }
 
 .close {
     position:absolute;
     top: 16px;
-    right: 20px;
+    right: 60px;
     z-index: 20;
     font-size: 30px;
     color: white;

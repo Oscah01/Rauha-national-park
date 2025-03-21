@@ -4,6 +4,7 @@ import gameDriveImage from '/about-1-2.jpg'; // Example image
 import specialExperienceImage from '/experience.jpg'; // Example image
 import giftShop from '/img43.jpg'; // Example image
 
+
 const ActivitiesPage = () => {
 
   const activities = [
