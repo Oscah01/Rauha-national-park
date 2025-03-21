@@ -48,6 +48,10 @@ app.get("/api/protected", verifyToken, (req, res) => {
   res.status(200).json({ message: 'You have access to this protected route!' });
 });
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the homepage!');
+});
+
 // ✅ Route to Generate JWT for User after Login
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
