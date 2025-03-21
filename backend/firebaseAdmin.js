@@ -1,9 +1,9 @@
-// backend/firebaseAdmin.js
+require('dotenv').config();  // Make sure to load the .env variables
+
 const admin = require('firebase-admin');
-const serviceAccount = require('./tungacamp-216ff-firebase-adminsdk-fbsvc-3c3325eebf.json');  // Make sure to replace this with your actual service account file
+
+const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK_JSON);
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(serviceAccount)
 });
-
-module.exports = admin;
