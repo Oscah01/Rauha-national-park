@@ -6,10 +6,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5000", // Backend server
+        target: "https://tungacamp-national-park.onrender.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
-        secure: false,
+        secure: true,
       },
     },
     hmr: {

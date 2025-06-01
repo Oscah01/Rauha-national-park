@@ -1,22 +1,8 @@
 const admin = require('firebase-admin');
-require('dotenv').config(); // Ensure dotenv is loaded
+const path = require('path');
 
-// Make sure the environment variable is defined
-const firebaseKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
-
-if (!firebaseKey) {
-  console.error('FIREBASE_SERVICE_ACCOUNT_KEY is not defined in environment variables');
-  process.exit(1); // Exit if the key is missing
-}
-
-// Try parsing the key and log any issues
-let serviceAccount;
-try {
-  serviceAccount = JSON.parse(firebaseKey);
-} catch (err) {
-  console.error('Error parsing FIREBASE_SERVICE_ACCOUNT_KEY:', err);
-  process.exit(1); // Exit if parsing fails
-}
+// Load the service account key from the JSON file in the backend directory
+const serviceAccount = require(path.join(__dirname, 'tungacamp-216ff-firebase-adminsdk-fbsvc-06b544aeb2.json'));
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({

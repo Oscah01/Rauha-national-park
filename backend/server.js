@@ -14,11 +14,24 @@ const User = require("./models/User");
 const app = express();
 
 // ✅ CORS Configuration
+const allowedOrigins = [
+  "https://www.ruahatungacamp.com",
+  "http://localhost:5173"
+];
+
 const corsOptions = {
-  origin: "https://www.ruahatungacamp.com", // Allow only your frontend domain
-  credentials: true, // Allow cookies and credentials
-  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
+app.use(cors(corsOptions));
+
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // Handle preflight requests for all routes
 
